@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+echo "stop slave" |mysql apci
+echo 'show slave status\G' | mysql 

@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+echo 'slave start' | mysql 
+echo 'show slave status\G' | mysql 

@@ -1,0 +1,20 @@
+#!/bin/bash
+clfs=`my_print_defaults mysqld | grep innodb_log_file_size | sed 's/.*[=]//'`
+lfs=`sudo ls -llh $1 | grep ib_logfile0 | awk '{ print $5 }'`
+
+if [ "$clfs" != "$lfs" ];
+then
+  echo "MySQL bin-log file size does not match."
+  if [ "$2" == "repair" ];
+  then
+    echo "Stopping mysql."
+    service mysql stop
+    echo "Removing bin logs"
+    rm -f $1/ib_logfile*
+    echo "Starting mysql."
+    service mysql start
+    exit $?
+  else
+    exit 1
+  fi
+fi
