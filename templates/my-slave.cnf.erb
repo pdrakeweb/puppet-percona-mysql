@@ -369,6 +369,13 @@ replicate-do-db=<%= mysql_replicate_database %>
 <% end
 end %>
 
+# Tables to ignore
+<% if mysql_wildcard_ignore != 'false'
+mysql_wildcard_ignore.each do|mysql_ignore_table| %>
+  replicate-wild-ignore-table=<%= mysql_ignore_table %>
+<% end
+end %>
+
 #
 # The port the master is listening on.
 # optional - defaults to 3306
