@@ -144,6 +144,7 @@ class mysql::server::slave {
   $master_user                    = hiera('mysql_master_user')
   $master_password                = hiera('mysql_master_password')
   $mysql_replicate_databases      = hiera('mysql_replicate_databases')
+  $mysql_wildcard_ignore          = hiera('mysql_wildcard_ignore')
   $innodb_log_file_size           = hiera('mysql_innodb_log_file_size')
   $innodb_log_files_in_group      = hiera('mysql_innodb_log_files_in_group')
   $innodb_flush_log_at_trx_commit = hiera('mysql_innodb_flush_log_at_trx_commit')
