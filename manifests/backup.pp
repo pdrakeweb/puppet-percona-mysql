@@ -3,7 +3,8 @@ class mysql::backup ($backup_major_version = '2.5', $backup_version = '2.5.1-01'
   $bin_log      = hiera('mysql_bin_log', 'true')
   $master_host  = hiera('mysql_master_host', 'false')
   $backup_email = hiera('mysql_backup_email', 'root@localhost')
-  $backup_dbs = hiera('mysql_backup_dbs', 'all')
+  $backup_dbs   = hiera('mysql_backup_dbs', 'all')
+  $exclude_dbs  = hiera('mysql_backup_exclude_dbs', 'performance_schema information_schema')
   $backup_user  = hiera('mysql_backup_user', 'root')
   $backup_pass  = hiera('mysql_backup_pass', '')
 

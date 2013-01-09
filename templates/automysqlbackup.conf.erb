@@ -33,7 +33,7 @@ MAILADDR="<%= backup_email %>"
 MDBNAMES="mysql $DBNAMES"
 
 # List of DBNAMES to EXLUCDE if DBNAMES are set to all (must be in " quotes)
-DBEXCLUDE=""
+DBEXCLUDE="<%= exclude_dbs %>"
 
 # Include CREATE DATABASE in backup?
 CREATE_DATABASE=yes
