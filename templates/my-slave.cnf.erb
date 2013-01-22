@@ -33,6 +33,13 @@
 port            = 3306
 socket    = /var/run/mysqld/mysqld.sock
 
+<% if mysql_ssl_flag != 'false' %>
+###SSL if enabled
+ssl-ca = <%= ssl_ca %>
+ssl-cert = <%= ssl_cert %>
+ssl-key = <%= ssl_key %>
+<% end %>
+
 # Here is entries for some specific programs
 # The following values assume you have at least 32M ram
 
@@ -50,6 +57,14 @@ nice    = 0
 #
 # * Basic Settings
 #
+
+<% if mysql_ssl_flag != 'false' %>
+###SSL if enabled
+ssl
+ssl-ca = <%= ssl_ca %>
+ssl-cert = <%= ssl_cert %>
+ssl-key = <%= ssl_key %>
+<% end %>
 
 #
 # * IMPORTANT
@@ -344,6 +359,10 @@ log-queries-not-using-indexes = 1
 # defaults to 2 if master-host is set
 # but will not function as a slave if omitted
 server-id = <%= server_id %>
+
+#report_host name seen for host on master
+report_host = <%= report_host %>
+
 #
 <% if master_host != 'false' %>
 # The replication master for this slave - required
@@ -368,6 +387,12 @@ master-password = <%= master_password %>
 replicate-do-db=<%= mysql_replicate_database %>
 <% end
 end %>
+
+<% if mysql_database_ignore != 'false'
+# Databases to Ignore for replication
+   mysql_replicate_databases_ignore.each do|mysql_replicate_database_ignore| %>
+replicate-ignore-db=<%= mysql_replicate_database_ignore %>
+<% end %>
 
 # Tables to ignore
 <% if mysql_wildcard_ignore != 'false'
